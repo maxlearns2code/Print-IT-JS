@@ -26,3 +26,18 @@ const arrowRight = document.querySelector(".arrow_right")
 arrowRight.addEventListener("click", function() {
 	console.log(arrowRight)
 })
+
+/* create bullets */
+function createDots() {
+	const dots = document.querySelector(".dots")
+	slides.forEach((slide,id) => {
+		const dot = document.createElement("div")
+		dot.classList.add("dot")
+		if (id===0) {
+			dot.classList.add("dot_selected")
+		}
+		dots.appendChild(dot)
+		console.log(slide)
+	});
+}
+createDots()
