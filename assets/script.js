@@ -38,6 +38,7 @@ function leftclick(event) {
 		currentSlide=maxSlides
 	}
 	updateSlide(currentSlide)
+	updateDotSelected(currentSlide)
 	console.log(event)
 }
 
@@ -50,10 +51,11 @@ function rightclick(event) {
 		currentSlide=0
 	}
 	updateSlide(currentSlide)
+	updateDotSelected(currentSlide)
 	console.log(event)
 }
 
-/* create bullets */
+/*create bullets*/
 function createDots() {
 	const dots = document.querySelector(".dots")
 	slides.forEach((slide,id) => {
@@ -74,4 +76,12 @@ function updateSlide (currentSlide) {
 	].image}`
 	imgtext.innerHTML=`${slides[currentSlide
 	].tagLine}`
+}
+
+/*update bullets*/
+function updateDotSelected () {
+	const dotSelected = document.querySelector(".dot_selected")
+	dotSelected.className = "dot"
+	const dots = document.querySelectorAll(".dot")
+	dots[currentSlide].className = "dot dot_selected"
 }
