@@ -18,14 +18,40 @@ const slides = [
 ]
 
 const arrowLeft = document.querySelector(".arrow_left")
-arrowLeft.addEventListener("click", function() {
-	console.log(arrowLeft)
-})
-
 const arrowRight = document.querySelector(".arrow_right")
-arrowRight.addEventListener("click", function() {
-	console.log(arrowRight)
-})
+const img = document.querySelector(".banner-img")
+const imgtext = document.querySelector("#banner p")
+
+const maxSlides = slides.length-1
+
+let currentSlide = 0
+
+arrowLeft.addEventListener("click", leftclick)
+arrowRight.addEventListener("click", rightclick)
+
+/*activate left arrow*/
+function leftclick(event) {
+	if(currentSlide+1 > 1) { 
+		currentSlide -= 1
+	}
+	else { 
+		currentSlide=maxSlides
+	}
+	updateSlide(currentSlide)
+	console.log(event)
+}
+
+/*activate right arrow*/
+function rightclick(event) {
+	if(currentSlide+1 <= maxSlides) { 
+		currentSlide += 1
+	}
+	else { 
+		currentSlide=0
+	}
+	updateSlide(currentSlide)
+	console.log(event)
+}
 
 /* create bullets */
 function createDots() {
@@ -41,3 +67,11 @@ function createDots() {
 	});
 }
 createDots()
+
+/*update carousel*/
+function updateSlide (currentSlide) {
+	img.src=`./assets/images/slideshow/${slides[currentSlide
+	].image}`
+	imgtext.innerHTML=`${slides[currentSlide
+	].tagLine}`
+}
