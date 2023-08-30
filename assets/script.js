@@ -81,7 +81,7 @@ function updateSlide (currentSlide) {
 /*update bullets*/
 function updateDotSelected () {
 	const dotSelected = document.querySelector(".dot_selected")
-	dotSelected.className = "dot"
+	dotSelected.classList.remove("dot_selected")
 	const dots = document.querySelectorAll(".dot")
-	dots[currentSlide].className = "dot dot_selected"
+	dots[currentSlide].classList.add("dot_selected")
 }
