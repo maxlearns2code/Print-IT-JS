@@ -20,7 +20,7 @@ const slides = [
 const arrowLeft = document.querySelector(".arrow_left")
 const arrowRight = document.querySelector(".arrow_right")
 const img = document.querySelector(".banner-img")
-const imgtext = document.querySelector("#banner p")
+const imgText = document.querySelector("#banner p")
 
 const maxSlides = slides.length-1
 
@@ -29,7 +29,7 @@ let currentSlide = 0
 arrowLeft.addEventListener("click", leftclick)
 arrowRight.addEventListener("click", rightclick)
 
-/*activate left arrow*/
+/*activate left arrow button*/
 function leftclick(event) {
 	if(currentSlide+1 > 1) { 
 		currentSlide -= 1
@@ -42,7 +42,7 @@ function leftclick(event) {
 	console.log(event)
 }
 
-/*activate right arrow*/
+/*activate right arrow button*/
 function rightclick(event) {
 	if(currentSlide+1 <= maxSlides) { 
 		currentSlide += 1
@@ -59,8 +59,17 @@ function rightclick(event) {
 function createDots() {
 	const dots = document.querySelector(".dots")
 	slides.forEach((slide,id) => {
+		/*create class dot*/
 		const dot = document.createElement("div")
 		dot.classList.add("dot")
+		/*activate bullets*/
+		dot.addEventListener("click", function() {
+			currentSlide=id
+			updateSlide(currentSlide)
+			updateDotSelected(currentSlide)
+			console.log(id)
+		})
+		/*create class dot_selected*/
 		if (id===0) {
 			dot.classList.add("dot_selected")
 		}
@@ -72,16 +81,20 @@ createDots()
 
 /*update carousel*/
 function updateSlide (currentSlide) {
+	/*take the correct image in the slides array*/
 	img.src=`./assets/images/slideshow/${slides[currentSlide
 	].image}`
-	imgtext.innerHTML=`${slides[currentSlide
+	/*take the correct text in the slides array*/
+	imgText.innerHTML=`${slides[currentSlide
 	].tagLine}`
 }
 
 /*update bullets*/
 function updateDotSelected () {
 	const dotSelected = document.querySelector(".dot_selected")
+	/*remove class dot_selected*/
 	dotSelected.classList.remove("dot_selected")
+	/*add class dot_selected*/
 	const dots = document.querySelectorAll(".dot")
 	dots[currentSlide].classList.add("dot_selected")
 }
